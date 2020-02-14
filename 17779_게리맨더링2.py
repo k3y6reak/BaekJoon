@@ -6,6 +6,12 @@ FIVE = 5
 
 
 def get_5_line(N):
+    """
+    주어진 조건에 따른 x, y, d1, d2 값을 선정한다.
+    :param N: 범위
+    :return: 조건에 따른 x, y, d1, d2 값
+    """
+
     possible_area = []
 
     for x in range(N):
@@ -19,12 +25,23 @@ def get_5_line(N):
 
 
 def set_up_left_line(area_map, x, y, d1, d2):
+    """
+    위에서부터 왼쪽으로 진행하는 경계선을 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 다른 d2
+    :return: 경계가 설정된 맵, 설정된 좌표
+    """
+
     # 위 왼쪽 방향 경계선을 만든다.
     x_range = list(range(x, x + d1 + 1))
     y_range = list(range(y, y - d1 - 1, -1))
 
     len_ = min(len(x_range), len(y_range))
 
+    # 경계 내부도 설정하기 위해 좌표 저장.
     xy = []
 
     for i in range(len_):
@@ -35,6 +52,16 @@ def set_up_left_line(area_map, x, y, d1, d2):
 
 
 def set_up_right_line(area_map, x, y, d1, d2):
+    """
+    위에서부터 오른쪽으로 진행하는 경계선을 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 다른 d2
+    :return: 경계가 설정된 맵
+    """
+
     # 위 오른쪽 방향 경계선을 만든다.
 
     x_range = list(range(x, x + d2 + 1))
@@ -49,6 +76,16 @@ def set_up_right_line(area_map, x, y, d1, d2):
 
 
 def set_down_right_line(area_map, x, y, d1, d2):
+    """
+    아래에서 오른쪽으로 진행하는 경계선을 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 다른 d2
+    :return: 경계가 설정된 맵
+    """
+
     # 아래 오른쪽 방향 경계선을 만든다.
 
     x_range = list(range(x + d1, x + d1 + d2 + 1))
@@ -63,6 +100,16 @@ def set_down_right_line(area_map, x, y, d1, d2):
 
 
 def set_down_left_line(area_map, x, y, d1, d2):
+    """
+    아래에서 왼쪽으로 진행하는 경계선을 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 다른 d2
+    :return: 경계가 설정된 맵, 설정된 좌표
+    """
+
     # 아래 왼쪽 방향 경계선을 만든다.
 
     x_range = list(range(x + d2, x + d1 + d2 + 1))
@@ -80,6 +127,16 @@ def set_down_left_line(area_map, x, y, d1, d2):
 
 
 def set_1_area(area_map, x, y, d1, d2):
+    """
+    1번 지역구를 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 따른 d2
+    :return: 1번 지역구가 추가된 맵
+    """
+
     for i in range(x + d1):
         for j in range(y + 1):
             if area_map[i][j] != FIVE:
@@ -89,6 +146,16 @@ def set_1_area(area_map, x, y, d1, d2):
 
 
 def set_2_area(area_map, x, y, d1, d2):
+    """
+    2번 지역구를 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 따른 d2
+    :return: 2번 지역구가 추가된 맵
+    """
+
     for i in range(x + d2 + 1):
         for j in range(y+1, len(area_map)):
             if area_map[i][j] != FIVE:
@@ -98,6 +165,16 @@ def set_2_area(area_map, x, y, d1, d2):
 
 
 def set_3_area(area_map, x, y, d1, d2):
+    """
+    3번 지역구를 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 따른 d2
+    :return: 3번 지역구가 추가된 맵
+    """
+
     for i in range(x + d1, len(area_map)):
         for j in range(y - d1 + d2):
             if area_map[i][j] != FIVE:
@@ -107,6 +184,16 @@ def set_3_area(area_map, x, y, d1, d2):
 
 
 def set_4_area(area_map, x, y, d1, d2):
+    """
+    4번 지역구를 설정하는 함수
+    :param area_map: 지역구를 설정하는 맵
+    :param x: 조건에 따른 x
+    :param y: 조건에 따른 y
+    :param d1: 조건에 따른 d1
+    :param d2: 조건에 따른 d2
+    :return: 4번 지역구가 추가된 맵
+    """
+
     for i in range(x + d2 + 1, len(area_map)):
         for j in range(y - d1 + d2, len(area_map)):
             if area_map[i][j] != FIVE:
@@ -116,11 +203,19 @@ def set_4_area(area_map, x, y, d1, d2):
 
 
 def set_5_area(area_map, left_xy, right_xy):
+    """
+    경계선 내부에 존재하는 지역구를 세팅하는 함수.
+    :param area_map: 지역구를 설정하는 맵
+    :param left_xy: 위에서 왼쪽으로 내려가는 좌표
+    :param right_xy: 아래에서 왼쪽으로 내려가는 좌표. (위치상 오른쪽)
+    :return:
+    """
 
     for idx in range(len(left_xy)):
         x = left_xy[idx][0]
         y = left_xy[idx][1]
 
+        # 지그재그로 내려가면서 끝나는 좌표를 만날때 까지 세팅한다.
         while not(x == right_xy[idx][0] and y == right_xy[idx][1]):
             # 아래로 이동한다.
             x += 1
@@ -134,7 +229,13 @@ def set_5_area(area_map, left_xy, right_xy):
 
 
 def get_max_min(map_, area_map, N):
-
+    """
+    지역구들에 존재하는 인원을 파악하고, 최대 인원과 최소 인원의 차를 구하는 함수.
+    :param map_: 인원이 세팅된 맵
+    :param area_map: 지역구가 세팅된 맵
+    :param N: 맵의 범위
+    :return: 최대 인원과 최소 인원의 차이
+    """
     area_sum = [0, 0, 0, 0, 0]
 
     for i in range(N):
